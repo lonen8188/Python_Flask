@@ -182,4 +182,35 @@ pytokens          0.3.0
 setuptools        65.5.0
 typing_extensions 4.15.0
 Werkzeug          3.1.4
+
+vsCode에 flake8 활성화하기
+https://fromitive.github.io/fromitive-blog/project/2023-09-20-backtest/#1-black-flake8-requirements
+
+vsCode에 1행 최대 문자수 변경하기
+Flake8 Args -> --max-line-length=88
+
+포메터를 black으로 변경하기
+Python > Formatting: Provider
+
+파일저장시 자동 포멧 기능 활성화 
+Python > Formatting On Save
+
+isort 설정하기
+검색상자 : Editor: Code Actions On Save -> Edit in settings.json
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+		"source.organizeImports": "always"     <- 추가
+	},
+    "flake8.args": [
+        "--max-line-length=88"
+    ],
+    "editor.defaultFoldingRangeProvider": "ms-python.black-formatter",
+    "notebook.codeActionsOnSave": {
+        "source.organizeImports": "explicit"     <- 주피터 노트북에서도 하고 싶으면 추가
+    }
+}
 ```
+
+
