@@ -132,4 +132,12 @@ Options:
   --help                          Show this message and exit.
   
 ```
-  
+vsCode를 다운 받는다.
+- https://code.visualstudio.com/docs/?dv=win64user
+- extensions -> python 확장기능 설치 
+```
+PS C:\> cd .\flaskbook\
+PS C:\flaskbook> code .
+PS C:\flaskbook>
+```
+
