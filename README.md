@@ -45,8 +45,11 @@
 - python.exe -m pip install --upgrade pip (업그레이드 pip)
 
 플라스크 명령어
+
 (venv) PS C:\flaskbook> flask
+
 Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
+
 
 Usage: flask [OPTIONS] COMMAND [ARGS]...
 
