@@ -192,6 +192,8 @@ Flake8 Args -> --max-line-length=88
 포메터를 black으로 변경하기
 Python > Formatting: Provider
 
+https://blog.jagaldol.com/development/python-dev-env-setting-1/
+
 파일저장시 자동 포멧 기능 활성화 
 Python > Formatting On Save
 
