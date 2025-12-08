@@ -139,5 +139,47 @@ vsCode를 다운 받는다.
 PS C:\> cd .\flaskbook\
 PS C:\flaskbook> code .
 PS C:\flaskbook>
+
+
 ```
 
+View에 터미널을 연다
+```
+https://wikidocs.net/7896
+https://icedhotchoco.tistory.com/entry/PEP-8
+파이썬엔 PEP(Program Enhance Proposal)이란 것이 있다.
+
+앞 절의 "The Zen of Python"도 그 중 하나인데 코딩 방법에 대한 제안서도 있다.
+그게 PEP-8이란 문서란다. "The Zen of Python"이 파이썬이 추구하는 철학에 관한 것이라면, 이 문서는 구체적인 실현 방법에 대한 것이다.
+
+PS C:\flaskbook> .\venv\Scripts\Activate.ps1
+(venv) PS C:\flaskbook> pip install flake8 black isort mypy
+설치중!!
+(venv) PS C:\flaskbook> pip list
+Package           Version
+----------------- -------
+black             25.11.0 -> PEP8에 따른 작성법에 코드를 자동으로 완성한다.
+blinker           1.9.0
+click             8.3.1
+colorama          0.4.6
+flake8            7.3.0 -> PEP8에 따른 작성법의 코드인지 여부를 자동으로 체크
+Flask             3.1.2
+isort             7.0.0 -> import문을 PEP8에 따른 작성법으로 자동으로 정렬한다.
+itsdangerous      2.2.0
+Jinja2            3.1.6
+librt             0.7.3
+MarkupSafe        3.0.3
+mccabe            0.7.0
+mypy              1.19.0 -> 타입 힌트의 타입을 확인한다.
+mypy_extensions   1.1.0
+packaging         25.0
+pathspec          0.12.1
+pip               25.3
+platformdirs      4.5.1
+pycodestyle       2.14.0
+pyflakes          3.4.0
+pytokens          0.3.0
+setuptools        65.5.0
+typing_extensions 4.15.0
+Werkzeug          3.1.4
+```
