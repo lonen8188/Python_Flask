@@ -45,7 +45,7 @@
 - python.exe -m pip install --upgrade pip (업그레이드 pip)
 
 플라스크 명령어
-
+```
 (venv) PS C:\flaskbook> flask
 
 Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
@@ -77,8 +77,8 @@ Commands:
   routes  Show the routes for the app. (앱의 라우팅 정보를 출력 : 경로)
   run     Run a development server. (플라스크의 내장 서버를 실행하는 명령어)
   shell   Run a shell in the app context. (플라스크 앱의 컨텍스트(실행환경)에서 파이썬 인터랙티브 셀을 사용하고 싶은 경우(디버깅, 테스트용)
-
-
+```
+```
 (venv) PS C:\flaskbook> flask run --help
 Usage: flask run [OPTIONS]
 
@@ -108,7 +108,8 @@ Options:
                                   not trigger a reload on change. Multiple
                                   patterns are separated by ';'.
   --help                          Show this message and exit.
-
+```
+```
 flask routes는 앱의 라우팅 정보를 출력한다.  
 - 요청한 곳의 url과 실제 메서드(함수)를 연결하는 곳
 -            Role       Endpoint Method
@@ -130,5 +131,5 @@ Options:
   --all-methods                   Show HEAD and OPTIONS methods.
   --help                          Show this message and exit.
   
-
+```
   
