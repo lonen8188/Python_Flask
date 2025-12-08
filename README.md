@@ -183,7 +183,7 @@ setuptools        65.5.0
 typing_extensions 4.15.0
 Werkzeug          3.1.4
 
-vsCode에 flake8 활성화하기
+vsCode에 flake8 활성화하기 extensions -> flake8 설치
 https://fromitive.github.io/fromitive-blog/project/2023-09-20-backtest/#1-black-flake8-requirements
 
 vsCode에 1행 최대 문자수 변경하기
@@ -197,7 +197,7 @@ https://blog.jagaldol.com/development/python-dev-env-setting-1/
 파일저장시 자동 포멧 기능 활성화 
 Python > Formatting On Save
 
-isort 설정하기
+isort 설정하기 extensions -> isort 설치
 검색상자 : Editor: Code Actions On Save -> Edit in settings.json
 {
     "editor.formatOnSave": true,
@@ -213,6 +213,9 @@ isort 설정하기
         "source.organizeImports": "explicit"     <- 주피터 노트북에서도 하고 싶으면 추가
     }
 }
+
+mypy 설정하기 extensions -> mypy 설치
+https://github.com/ml-flaskbook/flaskbook/blob/main/.vscode/settings.json
 ```
 
 
