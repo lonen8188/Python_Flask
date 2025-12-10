@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <!-- <link rel="stylesheet" href="/static/style.css"/> -->
+</head>
+<body>
+    {% if name=="kkw" %}
+    <h1>Name : {{ name }}</h1>
+    {% else %}
+    <h1> 이름이 없네요 !!</h1>
+    {% endif %}
+</body>
+</html>
