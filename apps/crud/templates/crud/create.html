@@ -1,11 +1,15 @@
-<!DOCTYPE html>
+<!-- p134에서 제외 상속처리 함<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사용자 신규 등록</title>
+    <link rel="stylesheet" href="{{ url_for('crud.static', filename='style.css') }}" />
+    <title>CRUD</title>
 </head>
-<body>
+<body> -->
+{% extends 'crud/base.html' %}
+{% block title %}사용자 신규등록{% endblock %}
+{% block content %}
     
     <h2> 사용자 신규 등록 페이지 </h2>
     <form action="{{ url_for('crud.create_user')}}" method="POST" novalidate="novalidate">
@@ -36,5 +40,6 @@
         <p> {{ form.submit() }}</p>
     </form>
 
-</body>
-</html>
+{% endblock %}    
+<!-- p 134 상속처리 함</body>
+</html> -->
