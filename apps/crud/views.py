@@ -1,5 +1,6 @@
 #                            p122                       p122
 from flask import Blueprint, redirect, render_template, url_for
+from flask_login import login_required  # 156 추가 (curd앱을 로그인 필수로 변경)
 
 from apps.app import db  # p108
 from apps.crud.forms import UserForm  # p120
@@ -18,11 +19,13 @@ crud = Blueprint(
 
 # index 엔드포인트를 작성하고 index.html을 반환한다.
 @crud.route("/")
+@login_required  # p156추가 http://localhost:5000/crud/로 접속시 로그인 필수
 def index():
     return render_template("crud/index.html")
 
 
 @crud.route("/sql")
+@login_required  # p156추가 http://localhost:5000/crud/sql로 접속시 로그인 필수
 def sql():
 
     print("=============User테이블에 모든 정보 (세션쿼리문)==================")
@@ -105,6 +108,7 @@ def sql():
 
 # p122 사용자 추가용
 @crud.route("/users/new", methods=["GET", "POST"])
+@login_required  # p156추가 http://localhost:5000/user/new로 접속시 로그인 필수
 def create_user():
     # UserForm을 인스턴스화 한다.
     form = UserForm()
@@ -136,6 +140,7 @@ def create_user():
 
 # 사용자 목록보기 함수 설정
 @crud.route("/users")
+@login_required  # p156추가 http://localhost:5000/crud/users로 접속시 로그인 필수
 def users():
     # 사용자 목록보기 출력용
 
@@ -145,6 +150,7 @@ def users():
 
 # 사용자 수정하기 함수 설정
 @crud.route("/users/<user_id>", methods=["GET", "POST"])
+@login_required  # p156추가 http://localhost:5000/crud/users/<id>로 접속시 로그인 필수
 def edit_user(user_id):
     form = UserForm()
 
@@ -171,6 +177,7 @@ def edit_user(user_id):
 
 # 사용자 삭제 엔드포인트 만들기
 @crud.route("/user/<user_id>/delete", methods=["POST"])
+@login_required  # p156추가 http://localhost:5000/crud/users/delete로 접속시 로그인 필수
 def delete_user(user_id):
     user = User.query.filter_by(id=user_id).first()
 

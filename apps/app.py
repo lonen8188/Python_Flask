@@ -1,14 +1,32 @@
 from pathlib import Path  # p100
 
 from flask import Flask
+
+# p149 추가
+# pip install flask-login
+from flask_login import LoginManager  # p149
 from flask_migrate import Migrate  # p100
 from flask_sqlalchemy import SQLAlchemy  # p100
-from flask_wtf import CSRFProtect  # p117
+from flask_wtf.csrf import CSRFProtect  # p117
 
 from apps.config import config  # p138추가
 
 db = SQLAlchemy()  # ORM객체 생성
 csrf = CSRFProtect()  # p117
+
+# p149 추가
+# LoginManager를 인스턴스화한다
+login_manager = LoginManager()
+# login_view 속성에 미로그인 시에 리다이렉트하는 엔드포인트를 지정한다
+login_manager.login_view = "auth.signup"
+# login_message 속성에 로그인 후에 표시하는 메시지를 지정한다
+# 여기에서는 아무것도 표시하지 않도록 공백을 지정한다
+# 미로그인시 회원가입페이지로 이동
+login_manager.login_message = ""
+# 로그인 후에 표시할 메시지를 지정할 수 있다.
+# 기술하지 않은경우에는 기본적으로 영어 메시지가 출력된다.
+# apps/auth/forms.py 파일 추가 구현
+# p149 추가 여기까지
 
 
 def create_app(config_key):  # 파라미터 추가 p138
@@ -70,6 +88,7 @@ def create_app(config_key):  # 파라미터 추가 p138
 
     # apps/crud/models.py를 만들고 데이터베이스 조작용 코드를 기입힌다.
 
+    login_manager.init_app(app)  # p150 추가
     from apps.crud import views as crud_views
 
     # crud 패키지로 부터 views를 impoort 한다.
@@ -156,6 +175,13 @@ def create_app(config_key):  # 파라미터 추가 p138
     # 함수로 앱을 생성하는 경우 모듈:함수와 같이 지정한다.
     # 또한 앱을 생성하는 함수명이 create_app의 경우는 자동으로 create_app 함수를 호출함으로
     # apps.app.py로 지정 가능함
+
+    # p146 추가 (인증용 코드)
+    from apps.auth import views as auth_views
+
+    # register_blueprint를 이용하여 views와 auth를 앱에 등록한다.
+    app.register_blueprint(auth_views.auth, url_prefix="/auth")  # p146 추가
+    # apps/auth/views.py에 엔드포인트 추가
 
     return app
 

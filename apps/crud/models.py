@@ -1,13 +1,18 @@
 from datetime import datetime
 
-# from flask_login import UserMixin
-from werkzeug.security import generate_password_hash
+from flask_login import UserMixin  # p151 추가
 
-from apps.app import db
+# from werkzeug.security import generate_password_hash p151변경
+from werkzeug.security import check_password_hash, generate_password_hash  # p151 추가
+
+# from apps.app import db # p151변경
+from apps.app import db, login_manager  # p151 추가
 
 
 # db.Model을 상속한 User 클래스를 작성한다.
-class User(db.Model):
+# 파라미터에 UserMixin 추가
+# class User(db.Model):
+class User(db.Model, UserMixin):
     # 테이블 명의 지정한다.
     __tablename__ = "users"
     # 칼럼의 정의한다.
@@ -35,17 +40,20 @@ class User(db.Model):
     def password(self, password):
         self.password_hash = generate_password_hash(password)
 
+    # 비밀번호 체크를 한다. P153 추가
+    # 입력된 비밀번호가 db의 해시화된 비밀번호와 일치하는지 체크
+    # 일치하면 True, 불일치 False
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
-#     # パスワードチェックをする
-#     def verify_password(self, password):
-#         return check_password_hash(self.password_hash, password)
-
-#     # メールアドレス重複チェックをする
-#     def is_duplicate_email(self):
-#         return User.query.filter_by(email=self.email).first() is not None
+    # 이메일 중복 체크를 한다. DB에 같은 이메일이
+    # 있으면 True, 없으면 False
+    def is_duplicate_email(self):
+        return User.query.filter_by(email=self.email).first() is not None
 
 
-# # ログインしているユーザー情報を取得する関数を作成する
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(user_id)#     return User.query.get(user_id)
+# 로그인하고 있는 사용자 정보를 취득하는 암수를 작성한다.
+# 사용자의 유니크 ID를 인수로 넘겨서 데이터베이스로부터 특정 사용자를 취득해서 반환해야 한다.
+@login_manager.user_loader  # 데코레이터
+def load_user(user_id):
+    return User.query.get(user_id)  # P153 여기까지
