@@ -5,24 +5,58 @@ from flask_migrate import Migrate  # p100
 from flask_sqlalchemy import SQLAlchemy  # p100
 from flask_wtf import CSRFProtect  # p117
 
+from apps.config import config  # p138추가
+
 db = SQLAlchemy()  # ORM객체 생성
 csrf = CSRFProtect()  # p117
 
 
-def create_app():
+def create_app(config_key):  # 파라미터 추가 p138
     # 플라스크 인스턴스 생성
     app = Flask(__name__)
 
+    app.config.from_object(config[config_key])  # p138추가
     # db용 코드 추가 p100
     # 앱의 config 설정을 한다.
-    app.config.from_mapping(
-        SECRET_KEY="12345678901234567890",
-        SQLALCHEMY_DATABASE_URI=f"sqlite:///{Path(__file__).parent.parent / 'local.sqlite'}",
-        SQLALCHEMY_TRACK_MEDIFICATIONS=False,
-        # SQL을 콘솔 로그에 출력하는 설정
-        SQLALCHEMY_ECHO=True,
-        WTF_CSRF_SECRET_KEY="12345678901234567890",
-    )
+
+    # p138 제거
+    # app.config.from_mapping(
+    #     SECRET_KEY="12345678901234567890",
+    #     SQLALCHEMY_DATABASE_URI=f"sqlite:///{Path(__file__).parent.parent / 'local.sqlite'}",
+    #     SQLALCHEMY_TRACK_MEDIFICATIONS=False,
+    #     # SQL을 콘솔 로그에 출력하는 설정
+    #     SQLALCHEMY_ECHO=True,
+    #     WTF_CSRF_SECRET_KEY="12345678901234567890",
+    # ) p138 제거
+
+    # config를 읽어 들이는 방법 example
+    # from_mapping 이용하는 방법
+    # app.config.from_mapping(
+    # SECRET_KEY="12345678901234567890",
+    #     SQLALCHEMY_DATABASE_URI=f"sqlite:///{Path(__file__).parent.parent / 'local.sqlite'}",
+    #     SQLALCHEMY_TRACK_MEDIFICATIONS=False,
+    #     # SQL을 콘솔 로그에 출력하는 설정
+    #     SQLALCHEMY_ECHO=True,
+    #     WTF_CSRF_SECRET_KEY="12345678901234567890",
+    # )
+
+    # from_envvar 이용하는 방법
+    # 환경 변수에 config 파일의 경로 정보를 기술해 두고, 앱을 실행할 때 환경변수를 지정한 경로를
+    # config값 에서 읽어 들이는 방법
+    # .env 에 추가
+    # APPLICATION_SETTINGS = /path/to/apps/config.py
+    # def create_app() 하단에 추가
+    # app.config.from_envvar("APPLICATION_SETTINGS")
+
+    # from_pyfile를 사용하는 방법
+    # 직업 파이썬 config 파일을 지정해서 읽어 들이는 방버
+    # 이방법은 환경별로 py 파일을 만들어 준비하고, 이용하고 싶은 환경에 맞춰 파일을 복사
+    # app.config.from_pyfile("config.py") 로 설정한다.
+
+    # from_file을 사용하는 방법
+    # 플라스트 2버전 부터 추가된 기능 (선택한 파일 형식으로 파일을 읽어 들임)
+    # json 파일로 부터 읽어들일 수 있다.
+    # app.config.from_file("config.json", load=json.load)
 
     # csrf 함수를 앱에 연결한다. p117
     csrf.init_app(app)
