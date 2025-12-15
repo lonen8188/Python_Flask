@@ -183,6 +183,14 @@ def create_app(config_key):  # 파라미터 추가 p138
     app.register_blueprint(auth_views.auth, url_prefix="/auth")  # p146 추가
     # apps/auth/views.py에 엔드포인트 추가
 
+    # p175 추가 (객체 감지용)
+
+    # 이제부터 작성하는 detector 패키지로부터 views를 import한다
+    from apps.detector import views as dt_views
+
+    # register_blueprint를 사용해 views의 dt를 앱에 등록한다
+    app.register_blueprint(dt_views.dt)
+
     return app
 
 
