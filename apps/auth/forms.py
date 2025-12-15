@@ -26,6 +26,7 @@ class SignUpForm(FlaskForm):
     # p150 추가 여기까지
 
 
+# p158 추가 (로그인 기능 만들기)
 class LoginForm(FlaskForm):
     email = StringField(
         "메일 주소",
