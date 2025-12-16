@@ -18,6 +18,9 @@ class UserImage(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
 
+# flask db migrate
+# flask db upgrade
+
 #
 # CREATE TABLE user_images (
 #         id INTEGER NOT NULL,
@@ -155,3 +158,28 @@ class UserImage(db.Model):
 # FROM user_images
 # WHERE ? = user_images.user_id ORDER BY user_images.id DESC
 #                               정렬 구문이 추가 된다.
+
+
+# p219 물체 감지 테이블 생성
+class UserImageTag(db.Model):
+    # 테이블명을 지정한다
+    __tablename__ = "user_image_tags"
+    id = db.Column(db.Integer, primary_key=True)
+    # user_image_id는 user_images 테이블의 id 컬럼의 외부로서 설정한다
+    user_image_id = db.Column(db.String, db.ForeignKey("user_images.id"))
+    tag_name = db.Column(db.String)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+
+
+# flask db migrate
+# flask db upgrade
+# CREATE TABLE user_image_tags (
+#         id INTEGER NOT NULL,
+#         user_image_id VARCHAR,
+#         tag_name VARCHAR,
+#         created_at DATETIME,
+#         updated_at DATETIME,
+#         PRIMARY KEY (id),
+#         FOREIGN KEY(user_image_id) REFERENCES user_images (id)
+# )
