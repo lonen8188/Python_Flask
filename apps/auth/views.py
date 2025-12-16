@@ -56,7 +56,9 @@ def signup():
         # 사용자 정보를 세션에 저장하고 있으므로 리다이렉트 후는 로그인 상태가 됨
         next_ = request.args.get("next")
         if next_ is None or not next_.startswith("/"):
-            next_ = url_for("crud.users")
+            # next_ = url_for("crud.users") p197변경
+            next_ = url_for("detector.index")
+            # 회원가입시 리다이렉트 경로 변경 (객체감지용 인덱스 페이지)
         return redirect(next_)
 
     return render_template("auth/signup.html", form=form)
@@ -78,7 +80,9 @@ def login():
         # 사용자가 존재하고 비밀번호가 일치하는 경우는 로그인을 허가한다
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
-            return redirect(url_for("crud.users"))
+            # p201 교체
+            # return redirect(url_for("crud.users"))
+            return redirect(url_for("detector.index"))
 
         # 로그인 실패 메시지를 설정한다
         flash("메일 주소 또는 비밀번호가 일치하지 않습니다")
