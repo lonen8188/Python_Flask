@@ -27,8 +27,11 @@ class User(db.Model, UserMixin):
         db.DateTime, default=datetime.now, onupdate=datetime.now
     )  # 수정일은 날짜타입 업데이트는 현재시간
 
-    # # backrefを利用しrelation情報を設定する
-    # user_images = db.relationship("UserImage", backref="user")
+    # backref를 이용하여 relation 정보 설정한다. p190
+    # user_images = db.relationship("UserImage", backref="user") p193 하단 정렬 추가
+    user_images = db.relationship(
+        "UserImage", backref="user", order_by="desc(UserImage.id)"
+    )
 
     # 비밀번호를 설정하기 위한 프로퍼티(캡슐화 : 직접 수정불가능 하게 속성처리함.)
     @property

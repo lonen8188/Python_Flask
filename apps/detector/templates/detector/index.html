@@ -1,5 +1,13 @@
 {% extends "detector/base.html" %}
 {% block content %}
-<div class="alert alert-primary">detector</div>
+<!-- <div class="alert alert-primary">detector</div> p186 제거-->
+<!-- p186 추가 -->
+ {% for user_image in user_images %}
+ <div class="card col-md-7 dt-image-context">
+    <section>
+        <img src="{{ user_image.UserImage.image_url }}"" alt="이미지" />
+    </section>
+ </div>
 
+{% endfor %} <!-- p186 추가끝 -->
 {% endblock %}
