@@ -23,6 +23,9 @@ class BaseConfig:
     SECRET_KEY = "12345678901234567890"
     WTF_CSRF_SECRET_KEY = "09876543210987654321"
 
+    # 이미지 업로드용 경로 설정 apps/images를 지정 p207
+    UPLOAD_FOLDER = str(Path(basedir, "apps", "images"))
+
 
 # BaseConfig 클래스를 상속하여 LocalConfig 클래스를 작성한다
 class LocalConfig(
