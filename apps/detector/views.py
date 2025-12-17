@@ -42,6 +42,10 @@ dt = Blueprint("detector", __name__, template_folder="templates")
 @dt.route("/")
 def index():
 
+    # p253 강제로 오류 발생 시키기
+    # raise Exception() 테스트 후 주석처리
+    # raise: 들어올리다, 키우다, 기르다 (강제 예외발생용)
+
     # User와 UserImage를 Join하여 이미지 일람을 취득한다 p185 추가
     user_images = (
         db.session.query(User, UserImage)
@@ -348,3 +352,22 @@ def search():
         delete_form=delete_form,
         detector_form=detector_form,
     )
+
+
+# p250 추가
+# Blueprint에서 등록한 앱 고유의 커스텀 오류 화면을 표시하는 경우에는
+# errorhandler 데코레이터를 사용하여 아래와 같이 기술한다.
+@dt.errorhandler(404)
+def page_not_found(e):
+    return render_template("detector/404.html"), 404
+
+
+# @dt.errorhandler(500)
+# def internal_server_error(e):
+#     return render_template("detector/500.html"), 500
+
+
+# Blueprint로 등록된 커스텀은 앱에서 전역에 등록한 것보다도 우선됨
+# 그러나 Blueprint가 결정되기 전의 경로 결정의 레벨에서 발생함으로 404오류는 처리 안됨
+# flask run 으로 실행한다.
+# flask --debug run으로 하면 500에러 발생이 안됨!

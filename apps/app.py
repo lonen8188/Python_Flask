@@ -1,6 +1,7 @@
 from pathlib import Path  # p100
 
-from flask import Flask
+#                         p249추가
+from flask import Flask, render_template
 
 # p149 추가
 # pip install flask-login
@@ -191,7 +192,13 @@ def create_app(config_key):  # 파라미터 추가 p138
     # register_blueprint를 사용해 views의 dt를 앱에 등록한다
     app.register_blueprint(dt_views.dt)
 
-    return app
+    # p249 추가 (커스텀 오류 처리용)
+    app.register_error_handler(404, page_not_found)
+    app.register_error_handler(500, internal_server_error)
+    # register_error_handler는 오류코드나 오류클래스를 작성하고 2번째 인수는 실행하는 함수를 등록
+    #                               하단에 함수 추가
+
+    return app  # create_app 종료
 
 
 # P99
@@ -216,3 +223,18 @@ def create_app(config_key):  # 파라미터 추가 p138
 # flask-wtf는 유효성 검증이나 CSRF에 대처하기 위한 폼을 작성하는 플라스크의 확장
 # 장점 : HTML을 쉽고 간편하게 작성, 폼의 유효성 검증, CSRF에 대처 가능
 # pip install flask-wtf
+
+
+# p249 추가 커스텀 에러
+# 등록한 엔드포인트명의 함수를 작성하고, 404 오류나 500 오류가 발생 하면 지정한 html을 리턴한다.
+def page_not_found(e):
+    """404 Not Found"""
+    return render_template("404.html"), 404
+
+
+def internal_server_error(e):
+    """500 Internal Server Error"""
+    return render_template("500.html"), 500
+
+
+# apps/detector/views.py 에 errorhandler 데코레이터를 사용하여 기술 추가
