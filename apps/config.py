@@ -138,6 +138,10 @@ class TestingConfig(BaseConfig):
     WTF_CSRF_ENABLED = False
     # testing 에선 CSRF를 무효하기 위해서 False로 설정
 
+    # p264 추가
+    # 이미지 업로드처에 tests/detector/images를 지정한다.
+    UPLOAD_FOLDER = str(Path(basedir, "tests", "detector", "images"))
+
 
 # config 사전에 매핑한다
 config = {
