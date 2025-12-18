@@ -1,4 +1,12 @@
 # p315 물체 감지 계산용 코드
+
+# 콘솔 python 실행
+# import torch
+# import torchvision
+# model = torchvision.models.detection.maskrcnn_resnet50_fpn(pretrained=True)
+# torch.save(model, "model.pt")
+# 저장된 모델 경로를 flaskbook_api 하단에 넣는다.
+
 from os import abort
 from pathlib import Path
 
@@ -69,6 +77,5 @@ def detection(request):
 # 학습 완료 모델을 보존할 때 torch.save함수를 사용함
 # 이것을 pickle라는 파이썬의 표준 모듈을 기반으로 하고 있음
 # pickle을 이용해도 되고 모델의 보존과 읽기가 가능하지만
-# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함
-# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함
-# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함
+# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함
+# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함# 클로저를 적어야 하기 대문에 pytorch를 이용하는 경우에는 torch를 이용함
