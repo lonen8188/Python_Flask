@@ -82,3 +82,4 @@ def fixture_app():
 def client(fixture_app):
     # Flask의 테스트용 클라이언트를 반환한다.
     return fixture_app.test_client()
+# pytest -s로 테스트 해보자.
